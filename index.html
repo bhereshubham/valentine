@@ -6,6 +6,13 @@
   <title>Be My Valentine ❤️</title>
 
   <style>
+          @keyframes heartBeat {
+  0%   { transform: scale(var(--scale)); }
+  25%  { transform: scale(calc(var(--scale) + 0.15)); }
+  50%  { transform: scale(var(--scale)); }
+  75%  { transform: scale(calc(var(--scale) + 0.12)); }
+  100% { transform: scale(var(--scale)); }
+}
     body {
       margin: 0;
       height: 100vh;
@@ -15,20 +22,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      @keyframes heartBeat {
-  0%   { transform: scale(var(--scale)); }
-  25%  { transform: scale(calc(var(--scale) + 0.15)); }
-  50%  { transform: scale(var(--scale)); }
-  75%  { transform: scale(calc(var(--scale) + 0.12)); }
-  100% { transform: scale(var(--scale)); }
-}
-
-.yes {
-  --scale: 1;
-  transform: scale(var(--scale));
-}
-
-
+      
       /* Background image */
       background: url("assets/bg-1.webp") center / cover no-repeat fixed;
     }
@@ -83,19 +77,18 @@
       transition: transform 0.2s;
     }
 
-    button:hover {
-      transform: scale(1.1);
-    }
-
     .yes {
-      background: #e63946;
-      color: white;
-    }
+  background: #e63946;
+  color: white;
+  --scale: 1;
+  transform: scale(var(--scale));
+}
 
     .no {
       background: #adb5bd;
       color: black;
       position: relative;
+      transition: transform 0.2s ease;
     }
 
     /* Floating hearts */
