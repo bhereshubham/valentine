@@ -1,42 +1,205 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shreya, Will you be my Valentine?🥹❤️" />
-  <meta name="author" content="Shubham" />
-  <meta name="google-site-verification" content="A9PEz5S-vxuNEG2xsGVK1IdfeP5FBflKWeKKLMVwgzo" />
-  <meta name="msvalidate.01" content="D919EEC68AFB633DFFC35FA2609D73A8" />
-  <meta name="robots" content="index, follow" />
-  <meta name="og:title" content="Be my Valentine?❤️" />
-  <meta name="og:description" content="Shreya,Will you be my Valentine?🥹❤️" />
-  <meta name="og:image" content="https://i.imgur.com/8q884zIl.png" />
-  <meta name="og:url" content="https://formyvalentine.netlify.app/" />
-  <meta name="og:site_name" content="Be my Valentine?❤️" />
-  <meta name="og:type" content="website" />
-  <meta name="twitter:title" content="Be my Valentine?❤️" />
-  <meta name="twitter:description" content="Shreya, Will you be my Valentine?🥹❤️" />
-  <meta name="twitter:image" content="https://i.imgur.com/8q884zIl.png" />
-  <meta name="twitter:url" content="https://formyvalentine.netlify.app/" />
-  <meta name="twitter:creator" content="@" />
-  <title>Be my Valentine?</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "kwx3exx6k9");
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      /* Background image */
+      background: url("assets/bg-1.webp") center / cover no-repeat fixed;
+    }
+
+    /* Decorative SVGs */
+    .corner {
+      position: absolute;
+      width: 140px;
+      max-width: 35vw;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .top-left {
+      top: 15px;
+      left: 15px;
+    }
+
+    .top-right {
+      top: 15px;
+      right: 15px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 22px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      max-width: 360px;
+      z-index: 10;
+      position: relative;
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 0.5rem;
+    }
+
+    #message {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      min-height: 60px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      margin: 8px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background: #e63946;
+      color: white;
+    }
+
+    .no {
+      background: #adb5bd;
+      color: black;
+      position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
 
+  <!-- Decorative SVGs -->
+  <img
+    src="assets/Love In The Air SVG Cut File.svg"
+    class="corner top-left"
+    alt="Love in the air"
+  >
+
+  <img
+    src="assets/All You Need Is Love SVG Cut File.svg"
+    class="corner top-right"
+    alt="All you need is love"
+  >
+
+  <!-- Main card -->
+  <div class="card" id="card">
+    <h1>Shreya 😌❤️</h1>
+
+    <div id="message">
+      I was going to act chill…<br>
+      but clearly that plan failed 😏
+    </div>
+
+    <p><strong>Will you be my Valentine?</strong></p>
+
+    <button class="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="no" onclick="handleNo()">No 🙄</button>
+  </div>
+
+  <script>
+    let noCount = 0;
+
+    const noMessages = [
+      "Whoa, straight to NO? Ice cold 😳",
+      "Are you sure? My heart just tripped 🥲",
+      "I literally picked this background for you 😔",
+      "This is getting emotionally expensive 😤",
+      "I’ll be nicer. Suspiciously nicer 😌",
+      "I’ll share my fries 🍟",
+      "The SVGs are judging you 👀",
+      "You enjoy this power a bit too much 😑",
+      "Blink twice if this is flirting 😏",
+      "Okay now I’m just emotionally invested 🥹"
+    ];
+
+    function handleNo() {
+      const msg = document.getElementById("message");
+
+      msg.innerHTML =
+        noMessages[Math.min(noCount, noMessages.length - 1)];
+
+      noCount++;
+
+      // Make NO button move
+      const btn = document.querySelector(".no");
+      btn.style.position = "absolute";
+      btn.style.top = Math.random() * 80 + "vh";
+      btn.style.left = Math.random() * 80 + "vw";
+    }
+
+    function sayYes() {
+      document.getElementById("card").innerHTML = `
+        <h1>EXCELLENT CHOICE 😍🔥</h1>
+        <p>
+          You’ve officially signed up for:
+        </p>
+        <ul style="text-align:left;">
+          <li>💬 Flirting on demand</li>
+          <li>😂 Laughing at terrible jokes</li>
+          <li>❤️ Unreasonably cute energy</li>
+          <li>😏 Zero escape routes</li>
+        </ul>
+        <p><strong>No cancellations 😌</strong></p>
+      `;
+    }
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration =
+        Math.random() * 3 + 4 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
 </html>
