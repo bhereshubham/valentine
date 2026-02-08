@@ -173,6 +173,7 @@
 
   // Grow YES button
   yesScale += 0.08;
+  yesScale = Math.min(yesScale, 1.8);
   document.querySelector(".yes").style.transform =
     `scale(${yesScale})`;
     }
