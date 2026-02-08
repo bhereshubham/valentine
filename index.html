@@ -15,6 +15,19 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      @keyframes heartBeat {
+  0%   { transform: scale(var(--scale)); }
+  25%  { transform: scale(calc(var(--scale) + 0.15)); }
+  50%  { transform: scale(var(--scale)); }
+  75%  { transform: scale(calc(var(--scale) + 0.12)); }
+  100% { transform: scale(var(--scale)); }
+}
+
+.yes {
+  --scale: 1;
+  transform: scale(var(--scale));
+}
+
 
       /* Background image */
       background: url("assets/bg-1.webp") center / cover no-repeat fixed;
@@ -139,6 +152,7 @@
 
   <script>
     let noCount = 0;
+    let yesScale = 1;
 
     const noMessages = [
       "Whoa, straight to NO? Ice cold 😳",
@@ -152,6 +166,21 @@
       "Blink twice if this is flirting 😏",
       "Okay now I’m just emotionally invested 🥹"
     ];
+    function growYesWithBeat() {
+  const yesBtn = document.querySelector(".yes");
+
+  // increase scale
+  yesScale += 0.08;
+  yesScale = Math.min(yesScale, 1.8); // safety cap
+
+  // update CSS variable
+  yesBtn.style.setProperty("--scale", yesScale);
+
+  // retrigger heartbeat animation
+  yesBtn.style.animation = "none";
+  yesBtn.offsetHeight; // force reflow
+  yesBtn.style.animation = "heartBeat 1s ease";
+}
 
     function handleNo() {
       const msg = document.getElementById("message");
@@ -172,10 +201,7 @@
   btn.style.transform = `translate(${x}px, ${y}px)`;
 
   // Grow YES button
-  yesScale += 0.08;
-  yesScale = Math.min(yesScale, 1.8);
-  document.querySelector(".yes").style.transform =
-    `scale(${yesScale})`;
+  growYesWithBeat();
     }
 
     function sayYes() {
